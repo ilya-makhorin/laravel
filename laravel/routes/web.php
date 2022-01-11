@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/tests', function () {
+Route::get('/test', function () {
     return ' <ul>
     <li>Чебурашка</li>
     <li>Крокодил Гена</li>
@@ -29,5 +29,5 @@ Route::get('/tests', function () {
 
 
 Route::get('/a', function () {
-    return '<button><a href="/tests"> Click me</a></button>';
+    return '<button><a href="/test"> Click me</a></button>';
 });
