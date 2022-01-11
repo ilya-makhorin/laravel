@@ -17,17 +17,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-Route::get('/tests', function () {
-    return ' <ul>
-    <li>Чебурашка</li>
-    <li>Крокодил Гена</li>
-    <li>Шапокляк</li>
-  </ul>';
-});
-
-
-Route::get('/a', function () {
-    return '<button><a href="/tests"> Click me</a></button>';
-});
