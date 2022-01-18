@@ -16,4 +16,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/index',[
+    \App\Http\Controllers\HomeController::class,'index'
+]);
+Route::get('/news',[
+    \App\Http\Controllers\NewsController::class,'news'
+]);
+Route::get('/newsrus',[
+    \App\Http\Controllers\NewsController::class,'newsrus'
+]);
+Route::get('/newsworld',[
+    \App\Http\Controllers\NewsController::class,'newsworld'
+]);
+Route::get('/newsregion',[
+    \App\Http\Controllers\NewsController::class,'newsregion'
+]);
+Route::get('/auth',[
+    \App\Http\Controllers\AuthController::class,'auth'
+]);
