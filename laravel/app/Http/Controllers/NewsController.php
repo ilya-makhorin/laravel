@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Doctrine\DBAL\Schema\Index;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\returnValue;
 
 class NewsController extends Controller
 {
 
-    private   $news = [
+    private   $news_title = [
         ['id'=> 'newsrus',
             'title'=> 'Новости России'],
         ['id'=> 'newsworld',
@@ -16,15 +18,24 @@ class NewsController extends Controller
             'title'=> 'Новости региона']
                       ];
     public function news(){
-        return view('news',['news'=>$this->news]);
+        return view('news',['news_title'=>$this->news_title]);
     }
     public function newsworld(){
-        return view('newsworld',['news'=>$this->news]);
+        return view('newsworld',['news_title'=>$this->news_title]);
     }
     public function newsrus(){
-        return view('newsrus',['news'=>$this->news]);
+        return view('newsrus',['news_title'=>$this->news_title]);
     }
     public function newsregion(){
-        return view('newsregion',['news'=>$this->news]);
+        return view('newsregion',['news_title'=>$this->news_title]);
+    }
+    public function create(Request $request)
+    {
+            $title = $request->input('title');
+            $description = $request->input('description');
+            return response()->redirectToRoute('news::new');
+    }
+    public function new(){
+        return view('news.create');
     }
 }
