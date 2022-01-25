@@ -34,3 +34,9 @@ Route::get('/newsregion',[
 Route::get('/auth',[
     \App\Http\Controllers\AuthController::class,'auth'
 ]);
+Route::post('/create',[
+    \App\Http\Controllers\NewsController::class,'create'
+])->name("news::create");
+Route::get('/new',[
+    \App\Http\Controllers\NewsController::class,'new'
+])->name("news::new");
