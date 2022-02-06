@@ -34,10 +34,19 @@ Route::get('/newsregion',[
 Route::get('/auth',[
     \App\Http\Controllers\AuthController::class,'auth'
 ]);
-Route::post('/create',[
+Route::match(['post','get'],'/create',[
     \App\Http\Controllers\NewsController::class,'create'
 ])->name("news::create");
-Route::get('/new',[
-    \App\Http\Controllers\NewsController::class,'new'
-])->name("news::new");
+Route::match(['post','get'],'/deleteNews{news}',[
+    \App\Http\Controllers\NewsController::class,'delete'
+])->name("news::deleteNews");
+
+Route::match(['post','get'],'/updateNews{news}',[
+    \App\Http\Controllers\NewsController::class,'update'
+])->name("news::updateNews");
+
+Route::get('/allNews',[
+    \App\Http\Controllers\NewsController::class,'allNews'
+])->name("news::allNews");
+
 Route::get('/db',[\App\Http\Controllers\DBcontroller::class,'index']);
