@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\AdminNewsSaveRequest;
 use App\Models\News;
 use Doctrine\DBAL\Schema\Index;
 use Illuminate\Http\Request;
@@ -25,13 +26,16 @@ class NewsController extends Controller
         $newsregion = DB::select('SELECT title,content from news where where id="3"');
         return view('newsregion',['newsregion'=>$newsregion]);
     }
-    public function create(Request $request)
+    public function create(AdminNewsSaveRequest $request)
     {
+//\App::setLocale('en');
+//__('labels.title');
         $news = new News();
         if($request->isMethod('post')){
             $news->fill($request->all());
             $news->save();
-            return redirect()->route('news::allNews');
+            return redirect()->route('news::create')
+                ->with('success', "Данные сохранены");
         }
         return view('news.create',[
             'news'=>$news,
