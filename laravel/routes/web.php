@@ -50,3 +50,19 @@ Route::get('/allNews',[
 ])->name("news::allNews");
 
 Route::get('/db',[\App\Http\Controllers\DBcontroller::class,'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/adminka', [\App\Http\Controllers\ProfileController::class, 'admin'])->name('adminka');
+Route::match(['post','get'],'/delete{user}',[
+    \App\Http\Controllers\ProfileController::class,'delete'
+])->name("delete");
+
+Route::match(['get', 'post'], '/profile', ['App\Http\Controllers\ProfileController', 'update'])
+    ->name('profile')
+    ->middleware('auth');
+Route::match(['post','get'],'/updateAdmin{user}',[
+    \App\Http\Controllers\ProfileController::class,'updateAdmin'
+])->name("updateAdmin");

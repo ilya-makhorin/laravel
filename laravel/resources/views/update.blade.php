@@ -1,0 +1,53 @@
+@extends('layouts.app')
+
+@section('title')
+    Админка.Профиль
+@endsection
+
+@section('content')
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>Профиль пользователя</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="{{route('profile')}}" method="post">
+                @csrf
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{session('success')}}
+                    </div>
+                @endif
+                <div class="form-group">
+                    <label>Имя</label>
+                    <input class="form-control" type="text" name="name"
+                           value="{{$user->name ?? old('name')}}">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" type="email" name="email"
+                           value="{{$user->email ?? old('email')}}">
+                </div>
+                <div class="form-group">
+                    <label>Новый пароль</label>
+                    <input class="form-control" type="password" name="password">
+                </div>
+                @if(Auth::user()->is_admin  = 0)
+                <div class="form-group">
+                    <label>Текущий пароль</label>
+                    <input class="form-control" type="password" name="current_password">
+                </div>
+                @endif
+                <div class="form-group">
+                    <input class="btn btn-success" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection

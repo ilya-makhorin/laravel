@@ -39,6 +39,7 @@ class CreateNewsTable extends Migration
             $table->text('content')
                 ->nullable(false)
                 ->comment('Текст новости');
+
         });
         Schema::create('news_status', function (Blueprint $table) {
             $table->id();
