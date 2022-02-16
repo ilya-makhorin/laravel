@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,3 +67,15 @@ Route::match(['get', 'post'], '/profile', ['App\Http\Controllers\ProfileControll
 Route::match(['post','get'],'/updateAdmin{user}',[
     \App\Http\Controllers\ProfileController::class,'updateAdmin'
 ])->name("updateAdmin");
+
+Route::get('parser',[\App\Http\Controllers\ParserController::class,'index'])
+    ->name('parser');
+Route::group([
+    'prefix'=>'social',
+    'as'=>'social::',
+    ],function(){
+Route::get('/login',[SocialController::class,'loginVK'])
+    ->name('login-vk');
+Route::get('/response',[SocialController::class,'responseVK'])
+    ->name('response-vk');
+});
